@@ -18,8 +18,8 @@ class DetailController {
   setName(String value) => name = value;
   setDate(String value) => date = value;
 
-  Future<StuffModel> save() async {
-    StuffModel stuff = StuffModel(
+  Future save() async {
+    final stuff = StuffModel(
       id: id,
       photoPath: photo,
       description: description,
@@ -28,11 +28,9 @@ class DetailController {
     );
 
     if (id == null) {
-      stuff = await _repository.create(stuff);
+      await _repository.create(stuff);
     } else {
       await _repository.update(stuff);
     }
-
-    return stuff;
   }
 }

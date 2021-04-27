@@ -17,4 +17,10 @@ class HomeController {
     stuffs = await _repository.readAll();
     loading = false;
   }
+
+  Future<void> delete(StuffModel stuff) async {
+    loading = true;
+    await _repository.delete(stuff);
+    loading = false;
+  }
 }

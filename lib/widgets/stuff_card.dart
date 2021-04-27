@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import '../helpers/date_helper.dart';
 
 import '../models/stuff_model.dart';
 
@@ -42,10 +45,12 @@ class StuffCard extends StatelessWidget {
           trailing: Container(
             padding: const EdgeInsets.only(top: 9.0),
             height: double.infinity,
-            child: Text('1d'),
+            child: Text(DateHelper.relative(stuff.date)),
           ),
           leading: CircleAvatar(
-            child: Text(stuff.description[0]),
+            backgroundImage:
+                stuff.hasPhoto ? FileImage(File(stuff.photoPath)) : null,
+            child: stuff.hasPhoto ? null : Text(stuff.description[0]),
           ),
         ),
       ),

@@ -3,9 +3,10 @@ import '../models/stuff_model.dart';
 import 'detail_page.dart';
 import '../widgets/stuff_card.dart';
 import '../widgets/stuff_listview.dart';
-import '../repositories/mock_stuff_repository_impl.dart';
+import '../repositories/stuff_repository_impl.dart';
 import '../controllers/home_controller.dart';
 import '../core/app_const.dart';
+import '../helpers/snackbar_helper.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -13,7 +14,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final _controller = HomeController(MockStuffRepositoryImpl());
+  final _controller = HomeController(StuffRepositoryImpl());
 
   @override
   void initState() {
@@ -21,7 +22,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
-  _initialize() async {
+  Future _initialize() async {
     await _controller.readAll();
     setState(() {});
   }
@@ -36,10 +37,13 @@ class _HomePageState extends State<HomePage> {
         child: Icon(Icons.add),
         onPressed: _onCreate,
       ),
-      body: StuffListView(
-        itemCount: _controller.length,
-        itemBuilder: _buildStuffCard,
-        loading: _controller.loading,
+      body: RefreshIndicator(
+        onRefresh: _initialize,
+        child: StuffListView(
+          itemCount: _controller.length,
+          itemBuilder: _buildStuffCard,
+          loading: _controller.loading,
+        ),
       ),
     );
   }
@@ -53,19 +57,26 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  _onCreate() {
-    Navigator.of(context).push(
+  _onCreate() async {
+    await Navigator.of(context).push(
       MaterialPageRoute(builder: (context) => DetailPage()),
     );
+    _initialize();
   }
 
-  _onUpdate(StuffModel stuff) {
-    Navigator.of(context).push(
+  _onUpdate(StuffModel stuff) async {
+    await Navigator.of(context).push(
       MaterialPageRoute(builder: (context) => DetailPage(stuff: stuff)),
     );
+    _initialize();
   }
 
-  _onDelete(StuffModel stuff) {
-    print('Delete');
+  _onDelete(StuffModel stuff) async {
+    await _controller.delete(stuff);
+    _initialize();
+    SnackbarHelper.showDeleteMessage(
+      context: context,
+      message: '${stuff.description} excluído com sucesso!',
+    );
   }
 }

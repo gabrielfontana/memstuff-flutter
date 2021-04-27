@@ -6,3 +6,6 @@ const kLabelName = 'Nome';
 const kLabelDescription = 'Descrição';
 const kLabelLoanDate = 'Data do empréstimo';
 const kButtonSave = 'Salvar';
+
+const kDatabaseName = 'memstuff.db';
+const kDatabaseVersion = 1;

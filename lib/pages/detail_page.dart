@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:memstuff/controllers/detail_controller.dart';
-import 'package:memstuff/core/app_const.dart';
-import 'package:memstuff/repositories/mock_stuff_repository_impl.dart';
-import 'package:memstuff/widgets/date_input_field.dart';
-import 'package:memstuff/widgets/loading_dialog.dart';
-import 'package:memstuff/widgets/photo_field_area.dart';
-import 'package:memstuff/widgets/primary_button.dart';
-import 'package:memstuff/widgets/text_input_field.dart';
+import '../controllers/detail_controller.dart';
+import '../core/app_const.dart';
+import '../repositories/stuff_repository_impl.dart';
+import '../widgets/date_input_field.dart';
+import '../widgets/loading_dialog.dart';
+import '../widgets/photo_field_area.dart';
+import '../widgets/primary_button.dart';
+import '../widgets/text_input_field.dart';
 import '../models/stuff_model.dart';
+import '../helpers/snackbar_helper.dart';
 
 class DetailPage extends StatefulWidget {
   final StuffModel stuff;
@@ -23,7 +24,14 @@ class DetailPage extends StatefulWidget {
 
 class _DetailPageState extends State<DetailPage> {
   final _formKey = GlobalKey<FormState>();
-  final _controller = DetailController(MockStuffRepositoryImpl());
+  final _controller = DetailController(StuffRepositoryImpl());
+
+  @override
+  void initState() {
+    _controller.setId(widget.stuff?.id);
+    _controller.setPhoto(widget.stuff?.photoPath);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,9 +89,24 @@ class _DetailPageState extends State<DetailPage> {
         context,
         message: widget.stuff == null ? 'Salvando...' : 'Atualizando...',
       );
-      final result = await _controller.save();
+      await _controller.save();
       LoadingDialog.hide();
-      Navigator.of(context).pop(result);
+      Navigator.of(context).pop();
+      _onSucessMessage();
+    }
+  }
+
+  _onSucessMessage() {
+    if (widget.stuff == null) {
+      SnackbarHelper.showCreateMessage(
+        context: context,
+        message: '${_controller.description} criado com sucesso!',
+      );
+    } else {
+      SnackbarHelper.showUpdateMessage(
+        context: context,
+        message: '${_controller.description} atualizado com sucesso!',
+      );
     }
   }
 }
