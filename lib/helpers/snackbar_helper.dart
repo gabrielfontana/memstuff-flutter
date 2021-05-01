@@ -14,7 +14,7 @@ class SnackbarHelper {
       padding: const EdgeInsets.all(20.0),
       margin: const EdgeInsets.all(10.0),
       borderRadius: BorderRadius.circular(8.0),
-      duration: Duration(seconds: 3),
+      duration: Duration(seconds: 1),
       message: message,
       icon: Icon(
         icon,
