@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../models/stuff_model.dart';
 import 'detail_page.dart';
@@ -52,11 +53,20 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildStuffCard(BuildContext context, int index) {
     final stuff = _controller.stuffs[index];
-    return StuffCard(
-      stuff: stuff,
-      onUpdate: () => _onUpdate(stuff),
-      onDelete: () => _onDelete(stuff),
-      onCall: () => _onCall(stuff),
+    return AnimationConfiguration.staggeredList(
+      position: index,
+      duration: const Duration(milliseconds: 375),
+      child: SlideAnimation(
+        verticalOffset: 50.0,
+        child: FadeInAnimation(
+          child: StuffCard(
+            stuff: stuff,
+            onUpdate: () => _onUpdate(stuff),
+            onDelete: () => _onDelete(stuff),
+            onCall: () => _onCall(stuff),
+          ),
+        ),
+      ),
     );
   }
 

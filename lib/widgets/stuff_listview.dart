@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class StuffListView extends StatelessWidget {
   final int itemCount;
-  final Widget Function(BuildContext context, int) itemBuilder;
+  final Widget Function(BuildContext, int) itemBuilder;
   final bool loading;
 
   const StuffListView({
@@ -29,10 +30,12 @@ class StuffListView extends StatelessWidget {
       );
     }
 
-    return ListView.builder(
-      padding: const EdgeInsets.symmetric(vertical: 10.0),
-      itemCount: itemCount,
-      itemBuilder: itemBuilder,
+    return AnimationLimiter(
+      child: ListView.builder(
+        padding: const EdgeInsets.symmetric(vertical: 10.0),
+        itemCount: itemCount,
+        itemBuilder: itemBuilder,
+      ),
     );
   }
 }
