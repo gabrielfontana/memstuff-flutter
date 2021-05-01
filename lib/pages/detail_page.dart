@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:memstuff/helpers/validator_helper.dart';
 import '../controllers/detail_controller.dart';
 import '../core/app_const.dart';
 import '../repositories/stuff_repository_impl.dart';
@@ -47,6 +49,10 @@ class _DetailPageState extends State<DetailPage> {
   }
 
   _buildForm() {
+    var maskFormatter = new MaskTextInputFormatter(
+      mask: '(##) #####-####',
+      filter: {"#": RegExp(r'[0-9]')},
+    );
     return Form(
       key: _formKey,
       child: Column(
@@ -67,6 +73,17 @@ class _DetailPageState extends State<DetailPage> {
             icon: Icons.person_outlined,
             initialValue: widget.stuff?.contactName ?? '',
             onSaved: _controller.setName,
+          ),
+          TextFormField(
+            initialValue: widget.stuff?.phone ?? '',
+            onSaved: _controller.setPhone,
+            decoration: InputDecoration(
+              labelText: kLabelPhone,
+              prefixIcon: Icon(Icons.phone),
+            ),
+            validator: ValidatorHelper.checkValidation,
+            keyboardType: TextInputType.phone,
+            inputFormatters: [maskFormatter],
           ),
           DateInputField(
             label: kLabelLoanDate,

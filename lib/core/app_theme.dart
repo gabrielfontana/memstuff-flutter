@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:memstuff/core/app_const.dart';
 
 final kAppTheme = ThemeData(
-  primarySwatch: Colors.purple,
+  primarySwatch: Colors.indigo,
   visualDensity: VisualDensity.adaptivePlatformDensity,
+  fontFamily: 'Montserrat',
+  scaffoldBackgroundColor: Color.fromRGBO(217, 217, 217, 1),
   buttonTheme: ButtonThemeData(
-    height: 52.0,
     textTheme: ButtonTextTheme.primary,
+  ),
+  textTheme: TextTheme(
+    button: TextStyle(
+      fontWeight: FontWeight.bold,
+      fontSize: kButtonFontSize,
+      letterSpacing: kButtonLetterSpacing,
+    ),
   ),
 );

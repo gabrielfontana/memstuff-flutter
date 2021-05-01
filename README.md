@@ -1,16 +1,15 @@
-# memstuff
+# calculator
 
-A new Flutter project.
+Desafios realizados durante as aulas de desenvolvimento mobile da Faculdade de Tecnologia de Americana
 
-## Getting Started
+## Aluno
 
-This project is a starting point for a Flutter application.
+Gabriel Fontana Junqueira Araújo
 
-A few resources to get you started if this is your first Flutter project:
+## Desafios para a aula
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+*   [X] Adicionar um campo TextFormField parar armazenar o telefone para contato (validação de telefone, RegEX e plugin BrasilFields para formatar os campos); Não se esqueça de modificar a classe Stuff para receber o telefone também.
+*   [] Validar todos campos do formulário: data de empréstimo deve ser menor ou igual a data de hoje; descrição não pode ser vazio; nome não pode ser vazio; telefone não pode ser vazio e precisa ter a quantidade de números adequada; Você pode adicionar essa validação entendendo mais sobre TextFormField
+*   [] Adicionar uma animação na lista de objetos (documentação, vídeo tutorial);
+*   [X] Implementar um tema (cores) personalizadas, incluindo fontes e tamanhos (utilize o panache para facilitar a configuração das cores).
+*   [] Adicionar um botão no StuffCard ao deslizar para esquerda, para realizar uma ligação para o número de telefone, caso ele exista; (plugin url_launcher e tutorial);

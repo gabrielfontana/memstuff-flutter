@@ -8,7 +8,7 @@ import 'stuff_repository.dart';
 class StuffRepositoryImpl implements StuffRepository {
   static const kTableName = 'stuff';
   static const kCreateTableSql =
-      'CREATE TABLE $kTableName(id INTEGER PRIMARY KEY AUTOINCREMENT, description TEXT, contactName TEXT, date TEXT, photoPath TEXT);';
+      'CREATE TABLE $kTableName(id INTEGER PRIMARY KEY AUTOINCREMENT, description TEXT, contactName TEXT, phone TEXT, date TEXT, photoPath TEXT);';
 
   Future<Database> _getDataBase() async {
     final path = join(await getDatabasesPath(), kDatabaseName);

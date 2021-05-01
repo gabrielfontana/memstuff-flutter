@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:memstuff/helpers/validator_helper.dart';
 
 class TextInputField extends StatelessWidget {
   final IconData icon;
@@ -23,6 +24,7 @@ class TextInputField extends StatelessWidget {
         prefixIcon: Icon(icon),
         labelText: label,
       ),
+      validator: ValidatorHelper.checkValidation,
     );
   }
 }

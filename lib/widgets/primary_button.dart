@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../core/app_const.dart';
 
 class PrimaryButton extends StatelessWidget {
   final Function onPressed;
@@ -11,9 +12,9 @@ class PrimaryButton extends StatelessWidget {
     Key key,
     this.onPressed,
     this.label,
-    this.padding = const EdgeInsets.only(top: 40.0),
-    this.height = 52.0,
-    this.radius = 10.0,
+    this.padding = const EdgeInsets.only(top: kButtonPadding),
+    this.height = kButtonHeight,
+    this.radius = kButtonRadius,
   }) : super(key: key);
 
   @override
@@ -22,12 +23,9 @@ class PrimaryButton extends StatelessWidget {
       padding: padding,
       child: ElevatedButton(
         onPressed: onPressed,
-        child: Text(label?.toUpperCase() ?? ''),
+        child: Text(label?.toString() ?? ''),
         style: ElevatedButton.styleFrom(
           minimumSize: Size.fromHeight(height),
-          textStyle: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(radius),

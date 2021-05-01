@@ -6,6 +6,7 @@ class StuffModel {
   String contactName;
   String photoPath;
   String date;
+  String phone;
 
   StuffModel({
     this.id,
@@ -13,6 +14,7 @@ class StuffModel {
     this.contactName,
     this.photoPath,
     this.date,
+    this.phone,
   });
 
   bool get hasPhoto => photoPath != null && photoPath.isNotEmpty;
@@ -23,6 +25,7 @@ class StuffModel {
       'contactName': contactName,
       'photoPath': photoPath,
       'date': date,
+      'phone': phone,
     };
 
     if (id != null) data['id'] = id;
@@ -36,6 +39,7 @@ class StuffModel {
       contactName: map['contactName'],
       photoPath: map['photoPath'],
       date: map['date'],
+      phone: map['phone'],
     );
   }
 

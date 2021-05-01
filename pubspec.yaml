@@ -11,9 +11,11 @@ dependencies:
   flutter:
     sdk: flutter
   another_flushbar: ^1.10.20
+  brasil_fields: ^1.1.2
   flutter_slidable: ^0.5.7
   image_picker: ^0.7.4
   intl: ^0.17.0
+  mask_text_input_formatter: ^1.2.1
   path: ^1.8.0
   path_provider: ^2.0.1
   sqflite: ^2.0.0+3
@@ -24,3 +26,8 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  fonts:
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/montserrat.regular.ttf
+          weight: 300
