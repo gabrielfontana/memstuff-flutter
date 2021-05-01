@@ -6,12 +6,13 @@ const kLabelName = 'Nome';
 const kLabelDescription = 'Descrição';
 const kLabelPhone = 'Telefone';
 const kLabelLoanDate = 'Data do empréstimo';
+const kButtonClean = 'Limpar';
 const kButtonSave = 'Salvar';
 
 const kDatabaseName = 'memstuff.db';
 const kDatabaseVersion = 1;
 
-const kButtonPadding = 40.0;
+const kButtonPadding = 15.0;
 const kButtonHeight = 52.0;
 const kButtonRadius = 10.0;
 const kButtonFontSize = 17.0;

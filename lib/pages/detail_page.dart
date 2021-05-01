@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:memstuff/helpers/validator_helper.dart';
+import '../helpers/validator_helper.dart';
 import '../controllers/detail_controller.dart';
 import '../core/app_const.dart';
 import '../repositories/stuff_repository_impl.dart';
@@ -50,7 +50,7 @@ class _DetailPageState extends State<DetailPage> {
 
   _buildForm() {
     var maskFormatter = new MaskTextInputFormatter(
-      mask: '(##) #####-####',
+      mask: '(##) #########',
       filter: {"#": RegExp(r'[0-9]')},
     );
     return Form(
@@ -81,7 +81,7 @@ class _DetailPageState extends State<DetailPage> {
               labelText: kLabelPhone,
               prefixIcon: Icon(Icons.phone),
             ),
-            validator: ValidatorHelper.checkValidation,
+            validator: ValidatorHelper.checkPhone,
             keyboardType: TextInputType.phone,
             inputFormatters: [maskFormatter],
           ),
@@ -89,6 +89,10 @@ class _DetailPageState extends State<DetailPage> {
             label: kLabelLoanDate,
             initialValue: widget.stuff?.date ?? '',
             onSaved: _controller.setDate,
+          ),
+          PrimaryButton(
+            label: kButtonClean,
+            onPressed: _onClean,
           ),
           PrimaryButton(
             label: kButtonSave,
@@ -111,6 +115,10 @@ class _DetailPageState extends State<DetailPage> {
       Navigator.of(context).pop();
       _onSucessMessage();
     }
+  }
+
+  void _onClean() {
+    _formKey.currentState.reset();
   }
 
   _onSucessMessage() {

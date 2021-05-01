@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../models/stuff_model.dart';
 import 'detail_page.dart';
 import '../widgets/stuff_card.dart';
@@ -55,6 +56,7 @@ class _HomePageState extends State<HomePage> {
       stuff: stuff,
       onUpdate: () => _onUpdate(stuff),
       onDelete: () => _onDelete(stuff),
+      onCall: () => _onCall(stuff),
     );
   }
 
@@ -79,5 +81,14 @@ class _HomePageState extends State<HomePage> {
       context: context,
       message: '${stuff.description} excluído com sucesso!',
     );
+  }
+
+  _onCall(StuffModel stuff) async {
+    var url = 'tel:0' + '${stuff.phone}';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Não foi possível prosseguir. Telefone: $url';
+    }
   }
 }

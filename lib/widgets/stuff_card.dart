@@ -10,12 +10,14 @@ class StuffCard extends StatelessWidget {
   final StuffModel stuff;
   final Function onUpdate;
   final Function onDelete;
+  final Function onCall;
 
   const StuffCard({
     Key key,
     this.stuff,
     this.onUpdate,
     this.onDelete,
+    this.onCall,
   }) : super(key: key);
 
   @override
@@ -30,6 +32,12 @@ class StuffCard extends StatelessWidget {
           color: Theme.of(context).accentColor,
           icon: Icons.delete,
           onTap: onDelete,
+        ),
+        IconSlideAction(
+          caption: 'Tel.',
+          color: Theme.of(context).accentColor,
+          icon: Icons.phone,
+          onTap: onCall,
         ),
       ],
     );
