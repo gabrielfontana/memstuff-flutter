@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:memstuff/helpers/validator_helper.dart';
 import '../helpers/date_helper.dart';
 
 class DateInputField extends StatefulWidget {
@@ -50,6 +51,7 @@ class _DateInputFieldState extends State<DateInputField> {
       readOnly: true,
       onTap: () => _onSelectDate(context),
       controller: _controller,
+      validator: ValidatorHelper.checkDate,
     );
   }
 
