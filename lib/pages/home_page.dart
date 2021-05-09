@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
     final stuff = _controller.stuffs[index];
     return AnimationConfiguration.staggeredList(
       position: index,
-      duration: const Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 350),
       child: SlideAnimation(
         verticalOffset: 200.0,
         child: FadeInAnimation(
